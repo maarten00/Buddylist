@@ -11,18 +11,19 @@
  *= require_self
  *= require_tree .
  */
-nav
-{
+body {
+  margin-left: 25px;
+}
+
+nav {
   width: 500px;
   height: 20px;
   margin-bottom: 10px;
 
-  .user_nav
-  {
+  .user_nav {
     float: right;
   }
-  .nav
-  {
+  .nav {
     float: left;
   }
 }
