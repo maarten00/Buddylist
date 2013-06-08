@@ -1,0 +1,22 @@
+<% @blogpostings.each do |blogposting| %>
+    <article class="blogpost">
+      <% if show_username == TRUE %>
+      <header><h2><%= link_to blogposting.user.username, blogposting.user %></h2></header>
+      <% end %>
+      <%= simple_format blogposting.content %>
+
+      Created at: <%= blogposting.created_at.to_s(:long) %>
+      <br>
+      <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, tag_path(t)}.join(', ')  %>
+      <br>
+      <% if blogposting.comments.count > 1 %>
+          <%= blogposting.comments.count %> comments
+          <br>
+      <% end %>
+
+      <%= link_to 'Show', blogposting %>
+      <% if current_user == @user %>
+          <%= link_to 'Edit', edit_blogposting_path(blogposting) %>
+      <% end %>
+    </article>
+<% end %>

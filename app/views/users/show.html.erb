@@ -1,0 +1,11 @@
+<h1><%= @user.username %> </h1>
+<% if current_user == @user %>
+    <%= link_to 'Edit profile', edit_user_path(@user) %>
+<% end %>
+<div class="avatar"><%= image_tag gravatar(@user.email, 128) %></div>
+<p>Email: <%= @user.email %></p>
+
+<h2>Blogs</h2>
+<%= render partial: "shared/blogpostingslist", locals: {:show_username => FALSE} %>
+
+<%= link_to 'Back', users_path %>

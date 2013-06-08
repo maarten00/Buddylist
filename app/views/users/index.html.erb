@@ -1,0 +1,14 @@
+<h1>Listing users</h1>
+
+<div class="users">
+  <% @users.each do |user| %>
+      <div class="user">
+        <div class="picture"><%= image_tag gravatar(user.email, 128) %></div>
+        <div class="data">
+          <h2><%= link_to user.username, user %></h2>
+          <%= simple_format user.email %>
+          Joined: <%= user.created_at.to_s(:long) %>
+        </div>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<%= form_for([@blogposting]) do |f| %>
+    <% if @blogposting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@blogposting.errors.count, "error") %> prohibited this blogposting from being saved:</h2>
+
+          <ul>
+            <% @blogposting.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :content %>
+      <br>
+      <%= f.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+      <%= f.text_field :tag_list %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

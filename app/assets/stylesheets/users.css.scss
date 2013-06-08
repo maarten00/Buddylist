@@ -1,0 +1,30 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.users
+{
+
+  .user
+  {
+    border: 1px solid gray;
+    width: 500px;
+    height: 142px;
+    margin: 5px;
+
+    .picture
+    {
+      margin: 5px;
+      float: left;
+      width: 128px;
+    }
+    .data
+    {
+      margin-left: 10px;
+      float: left;
+      width: 350px;
+    }
+  }
+
+
+}
