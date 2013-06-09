@@ -11,19 +11,14 @@
  *= require_self
  *= require_tree .
  */
+@import "bootstrap";
+
 body {
-  margin-left: 25px;
+  padding-top: 60px;
 }
 
-nav {
-  width: 500px;
-  height: 20px;
-  margin-bottom: 10px;
-
-  .user_nav {
-    float: right;
-  }
-  .nav {
-    float: left;
-  }
+@import "bootstrap-responsive";
+body {
+  padding-left: 25px;
+  padding-top: 60px;
 }

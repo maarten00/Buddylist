@@ -93,16 +93,6 @@ class BlogpostingsController < ApplicationController
     @user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  private
-  def set_blogpostingstags
-    blogpostingstags = BlogpostingsTag.all.where(:blogposting_id => params[:id])
-    tags = Tag.all
-    @tags = Array.new
-    blogpostingstags.each do |blogpostingstag|
-      @tags << tags.find(blogpostingstag.tag_id)
-    end
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def blogposting_params

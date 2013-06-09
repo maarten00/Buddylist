@@ -1,0 +1,21 @@
+<%= form_for(@audioposting) do |f| %>
+  <% if @audioposting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@audioposting.errors.count, "error") %> prohibited this audioposting from being saved:</h2>
+
+      <ul>
+      <% @audioposting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :audiofile %><br>
+    <%= f.file_field :audiofile %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130607141704) do
+ActiveRecord::Schema.define(version: 20130609210231) do
+
+  create_table "audiopostings", force: true do |t|
+    t.integer  "user_id"
+    t.string   "audiofile"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blogpostings", force: true do |t|
-    t.integer "user_id"
-    t.string "content"
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -23,22 +30,23 @@ ActiveRecord::Schema.define(version: 20130607141704) do
   add_index "blogpostings", ["id"], name: "index_blogpostings_on_id"
 
   create_table "comments", force: true do |t|
-    t.integer "user_id"
-    t.integer "blogposting_id"
-    t.string "content", null: false
+    t.integer  "user_id"
+    t.integer  "blogposting_id"
+    t.string   "content",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "audioposting_id"
   end
 
   add_index "comments", ["user_id", "blogposting_id"], name: "index_comments_on_user_id_and_blogposting_id"
 
   create_table "taggings", force: true do |t|
-    t.integer "tag_id"
-    t.integer "taggable_id"
-    t.string "taggable_type"
-    t.integer "tagger_id"
-    t.string "tagger_type"
-    t.string "context", limit: 128
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
     t.datetime "created_at"
   end
 
@@ -50,13 +58,13 @@ ActiveRecord::Schema.define(version: 20130607141704) do
   end
 
   create_table "users", force: true do |t|
-    t.string "username"
-    t.string "password_hash"
-    t.string "password_salt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "avatar"
-    t.string "email"
+    t.string   "username"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "avatar"
+    t.string   "email"
   end
 
 end

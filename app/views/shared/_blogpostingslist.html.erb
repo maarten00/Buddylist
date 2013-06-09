@@ -1,22 +1,24 @@
-<% @blogpostings.each do |blogposting| %>
-    <article class="blogpost">
-      <% if show_username == TRUE %>
-          <header><h2><%= link_to blogposting.user.username, blogposting.user %></h2></header>
-      <% end %>
-      <%= simple_format blogposting.content %>
+<div class="blogposts">
+  <% @blogpostings.each do |blogposting| %>
+      <article class="blogpost">
+        <% if show_username == TRUE %>
+            <aside class="picture"><%= image_tag gravatar(blogposting.user.email, 40) %></aside>
+            <header><h2><%= link_to blogposting.user.username, blogposting.user %></h2></header>
+        <% end %>
+        <%= simple_format blogposting.content %>
 
-      Created at: <%= blogposting.created_at.to_s(:long) %>
-      <br>
-      <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-      <br>
-      <% if blogposting.comments.count > 1 %>
-          <%= blogposting.comments.count %> comments
-          <br>
-      <% end %>
+        <%= time_ago_in_words(blogposting.created_at) %> ago
 
-      <%= link_to 'Show', blogposting %>
-      <% if current_user == @user %>
-          <%= link_to 'Edit', edit_blogposting_path(blogposting) %>
-      <% end %>
-    </article>
-<% end %>
+        <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+        <br>
+        <% if blogposting.comments.count > 1 %>
+            <%= blogposting.comments.count %> comments
+        <% end %>
+
+        <%= link_to 'Show', blogposting %>
+        <% if current_user == @user %>
+            <%= link_to 'Edit', edit_blogposting_path(blogposting) %>
+        <% end %>
+      </article>
+  <% end %>
+</div>
