@@ -11,17 +11,17 @@
  *= require_self
  *= require_tree .
  */
-@import "bootstrap";
-
 body {
   padding-top: 60px;
-  background-image: url(image_path("cream_pixels.png"));
 }
 
 @import "bootstrap-responsive";
 body {
-  padding-left: 25px;
-  padding-top: 60px;
+  background-image: url(image_path("cream_pixels.png"));
+}
+
+footer {
+  padding-bottom: 40px;
 }
 
 h1, h2, h3, h4, h5, h6 {
