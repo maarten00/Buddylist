@@ -18,13 +18,13 @@
     </div>
 
     <div class="field">
-      <%= f.label :audiofile %>
-      <br>
-
-      <% # Display filename if a file already exists, file is not editable.     %>
+      <% # Display filename if a file already exists, file is not editable.       %>
       <% if  @audioposting.audiofile? %>
-          File: <%= File.basename(@audioposting.audiofile.path) %>
+          <%= simple_format "File: " + File.basename(@audioposting.audiofile.path) %>
       <% else %>
+          <%= f.label :audiofile %>
+          <br>
+
           <div class="fileupload fileupload-new" data-provides="fileupload">
             <div class="input-append">
               <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i>
@@ -36,6 +36,12 @@
           </div>
 
       <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tag_list, "Tags (separated by commas)" %>
+      <br/>
+      <%= f.text_field :tag_list %>
     </div>
     <div class="actions">
       <%= f.submit 'Submit', class: 'btn' %>

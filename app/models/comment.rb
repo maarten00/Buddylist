@@ -5,14 +5,14 @@ class Comment < ActiveRecord::Base
 
   validates :user_id, :presence => true
   validate :blogposting_xor_audioposting_xor_videoposting
-  validates :content, :presence => true, :length => { :maximum => 50000 }
+  validates :content, :presence => true, :length => {:maximum => 50000}
 
   default_scope :order => 'comments.created_at asc'
 
   private
 
   def blogposting_xor_audioposting_xor_videoposting
-    if !(blogposting.blank? ^ audioposting.blank? ^ videoposting.blank)
+    if !(blogposting.blank? ^ audioposting.blank?)
       errors.add("Comment must be placed on a blog, audio or videoposting.")
     end
   end
