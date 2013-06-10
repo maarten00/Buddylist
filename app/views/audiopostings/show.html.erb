@@ -2,7 +2,11 @@
 
 <p>
   <strong>Audiofile:</strong>
-  <%= @audioposting.audiofile %>
+  <audio controls>
+    <source src=" <%= @audioposting.audiofile %>" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
 </p>
 
 <%= link_to 'Edit', edit_audioposting_path(@audioposting) %> |
