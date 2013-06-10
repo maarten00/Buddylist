@@ -1,7 +1,7 @@
 class AudiopostingsController < ApplicationController
   before_action :set_audioposting, only: [:show, :edit, :update, :destroy]
   before_filter :require_login, only: [:show]
-  before_filter :set_user, only: [:show]
+  before_filter :set_user, only: [:show, :edit, :update]
   before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]
 
@@ -54,18 +54,13 @@ class AudiopostingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_audioposting
-      @audioposting = Audioposting.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def audioposting_params
-      params.require(:audioposting).permit(:audiofile)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_audioposting
+    @audioposting = Audioposting.find(params[:id])
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
   def set_audioposting
     @audioposting = Audioposting.find(params[:id])
   end
@@ -88,6 +83,6 @@ class AudiopostingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def audioposting_params()
-    params.require(:audioposting).permit(:user_id, :audiofile, :tag_list).merge(:user_id => @user.id)
+    params.require(:audioposting).permit(:user_id, :audiofile, :title, :tag_list).merge(:user_id => @user.id)
   end
 end

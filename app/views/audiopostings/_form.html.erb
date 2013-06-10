@@ -1,21 +1,43 @@
 <%= form_for(@audioposting) do |f| %>
-  <% if @audioposting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@audioposting.errors.count, "error") %> prohibited this audioposting from being saved:</h2>
+    <% if @audioposting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@audioposting.errors.count, "error") %> prohibited this audioposting from being saved:</h2>
 
-      <ul>
-      <% @audioposting.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @audioposting.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <br>
+      <%= f.text_field :title %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :audiofile %><br>
-    <%= f.file_field :audiofile %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :audiofile %>
+      <br>
+
+      <% # Display filename if a file already exists, file is not editable.     %>
+      <% if  @audioposting.audiofile? %>
+          File: <%= File.basename(@audioposting.audiofile.path) %>
+      <% else %>
+          <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="input-append">
+              <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i>
+                <span class="fileupload-preview"></span></div>
+          <span class="btn btn-file"><span class="fileupload-new">Select file</span>
+          <span class="fileupload-exists">Change</span><%= f.file_field :audiofile %></span>
+              <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Submit', class: 'btn' %>
+    </div>
 <% end %>

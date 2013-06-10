@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Audiofile:</strong>
-  <audio controls>
-    <source src=" <%= @audioposting.audiofile %>" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<h1><%= @audioposting.title %></h1>
+<strong>Audiofile:</strong>
+<audio controls>
+  <source src=" <%= @audioposting.audiofile %>" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 </p>
 
