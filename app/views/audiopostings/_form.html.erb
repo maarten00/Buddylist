@@ -1,4 +1,4 @@
-<%= form_for(@audioposting) do |f| %>
+<%= form_for @audioposting, html: {:multipart => true} do |f| %>
     <% if @audioposting.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@audioposting.errors.count, "error") %> prohibited this audioposting from being saved:</h2>
@@ -18,9 +18,20 @@
     </div>
 
     <div class="field">
-      <% # Display filename if a file already exists, file is not editable.       %>
+      <% # Display filename if a file already exists, file is not editable.         %>
       <% if  @audioposting.audiofile? %>
           <%= simple_format "File: " + File.basename(@audioposting.audiofile.path) %>
+          <div data-provides="fileupload" class="fileupload fileupload-exists"><input type="hidden" value="" name="">
+
+            <div class="input-append">
+              <div class="uneditable-input span3">
+                <i class="icon-file fileupload-exists"></i><span class="fileupload-preview"><%= File.basename(@audioposting.audiofile.path) %></span>
+              </div>
+                <span class="btn btn-file"><span class="fileupload-new">Select file</span>
+                <span class="fileupload-exists">Change</span><input type="file" name="audioposting[audiofile]" id="audioposting_audiofile"></span>
+              <a data-dismiss="fileupload" class="btn fileupload-exists" href="#">Remove</a>
+            </div>
+          </div>
       <% else %>
           <%= f.label :audiofile %>
           <br>
@@ -29,12 +40,9 @@
             <div class="input-append">
               <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i>
                 <span class="fileupload-preview"></span></div>
-          <span class="btn btn-file"><span class="fileupload-new">Select file</span>
-          <span class="fileupload-exists">Change</span><%= f.file_field :audiofile %></span>
-              <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+              <span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><%= f.file_field :audiofile %></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
             </div>
           </div>
-
       <% end %>
     </div>
 

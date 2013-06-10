@@ -4,7 +4,6 @@
   <thead>
   <tr>
     <th>Title</th>
-    <th>Audiofile</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,7 +14,6 @@
   <% @audiopostings.each do |audioposting| %>
       <tr>
         <td><%= audioposting.title %></td>
-        <td><%= File.basename(audioposting.audiofile.path) %></td>
         <td><%= link_to 'Show', audioposting %></td>
         <td><%= link_to 'Edit', edit_audioposting_path(audioposting) %></td>
         <td><%= link_to 'Destroy', audioposting, method: :delete, data: {confirm: 'Are you sure?'} %></td>

@@ -2,7 +2,7 @@
 
 <div class="tag_cloud">
   <% tag_cloud Blogposting.tag_counts, %w[s m l] do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+      <%= link_to tag.name, blogtag_path(tag.name), class: css_class %>
   <% end %>
 </div>
 

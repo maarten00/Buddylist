@@ -5,7 +5,7 @@ class Audioposting < ActiveRecord::Base
   acts_as_taggable
   mount_uploader :audiofile, AudioUploader
 
-  validates_presence_of :user_id, :audiofile
+  validates_presence_of :user_id, :audiofile, :title
 
   default_scope :order => 'audiopostings.created_at desc'
 end
