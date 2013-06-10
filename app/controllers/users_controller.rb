@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @blogpostings = Blogposting.all.where(:user_id => @user.id)
+    @audiopostings = Audioposting.all.where(:user_id => @user.id)
   end
 
   def index

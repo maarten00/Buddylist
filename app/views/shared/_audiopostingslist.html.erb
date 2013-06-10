@@ -1,0 +1,30 @@
+<div class="blogposts">
+  <% @audiopostings.each do |audioposting| %>
+      <article class="blogpost">
+        <% if show_username == TRUE %>
+            <aside class="picture"><%= image_tag gravatar(audioposting.user.email, 40) %></aside>
+            <header><h2><%= link_to audioposting.user.username, audioposting.user %></h2></header>
+        <% end %>
+        <h4><%= audioposting.title %></h4>
+        <audio controls>
+          <source src=" <%= audioposting.audiofile %>" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <br>
+
+        <%= time_ago_in_words(audioposting.created_at) %> ago
+
+        <strong>Tags:</strong> <%= raw audioposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %>
+        <br>
+        <% if audioposting.comments.count > 1 %>
+            <%= audioposting.comments.count %> comments
+        <% end %>
+
+        <%= link_to 'Show', audioposting %>
+        <% if current_user == @user %>
+            <%= link_to 'Edit', edit_audioposting_path(audioposting) %>
+        <% end %>
+      </article>
+  <% end %>
+</div>
