@@ -1,7 +1,7 @@
 <article>
   <h1><%= @audioposting.title %></h1>
   <% if current_user == @audioposting.user %>
-      <%= link_to 'Edit', edit_audioposting_path(@audioposting) %>
+      <%= link_to 'Edit', edit_audioposting_path(@audioposting), class: 'btn btn-small' %>
   <% end %>
 
   <p><strong>Tags:</strong> <%= raw @audioposting.tag_list.map { |t| link_to t, audiotag_path(t) }.join(', ') %></p>
@@ -14,7 +14,7 @@
 
 </article>
 
-<% # COMMENTS         %>
+<% # COMMENTS          %>
 <section id="comments">
   <h3>Comments</h3>
   <% @comments.each do |comment| %>
@@ -22,7 +22,7 @@
         <div class="commenthead">
           <div class="avatar"><%= image_tag gravatar(comment.user.email, 24) %></div>
           <%= comment.user.username %> - <%= time_ago_in_words(comment.created_at) %> ago
-          <% # display delete link only for comments written by this particular user         %>
+          <% # display delete link only for comments written by this particular user          %>
           <% if current_user.to_s != '' and comment.user_id == current_user.id %>
               <span><%= link_to 'delete', audioposting_comment_path(@audioposting, comment), :confirm => 'Are you sure?', :method => :delete, :class => "" %></span>
           <% end %>
@@ -31,7 +31,7 @@
       </article>
   <% end %>
 
-  <% # add a new comment         %>
+  <% # add a new comment          %>
   <article class="newcomment">
     <h3>Add comment</h3>
 
@@ -46,4 +46,4 @@
   </article>
 </section>
 
-<%= link_to 'Back', audiopostings_path %>
+<%= link_to 'Back', audiopostings_path, class: 'btn' %>

@@ -109,6 +109,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<script>
+    $('a.dropdown-toggle, .dropdown-menu a').on('touchstart', function (e) {
+        e.stopPropagation();
+    });
+</script>
 
 </body>
 </html>
