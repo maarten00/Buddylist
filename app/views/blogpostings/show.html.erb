@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <%= simple_format @blogposting.content %>
 
-<p><strong>Tags:</strong> <%= raw @blogposting.tag_list.map { |t| link_to t, blogposting_tag_path(t) }.join(', ') %></p>
+<p><strong>Tags:</strong> <%= raw @blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
 
 <p><strong>Written by: </strong><%= @user.username %></p>
 
@@ -10,7 +8,7 @@
     <%= link_to 'Edit post', edit_blogposting_path(@blogposting) %>
 <% end %>
 
-<% # COMMENTS  %>
+<% # COMMENTS   %>
 <section id="comments">
   <h3>Comments</h3>
   <% @comments.each do |comment| %>
@@ -18,7 +16,7 @@
         <div class="commenthead">
           <div class="avatar"><%= image_tag gravatar(comment.user.email, 24) %></div>
           <%= comment.user.username %> - <%= time_ago_in_words(comment.created_at) %> ago
-          <% # display delete link only for comments written by this particular user  %>
+          <% # display delete link only for comments written by this particular user   %>
           <% if current_user.to_s != '' and comment.user_id == current_user.id %>
               <span><%= link_to 'delete', blogposting_comment_path(@blogposting, comment), :confirm => 'Are you sure?', :method => :delete, :class => "" %></span>
           <% end %>
@@ -27,7 +25,7 @@
       </article>
   <% end %>
 
-  <% # add a new comment  %>
+  <% # add a new comment   %>
   <article class="newcomment">
     <h3>Add comment</h3>
     <% if current_user.to_s != '' %>
