@@ -1,14 +1,20 @@
-<h1><%= @user.username %> </h1>
-<% if current_user == @user %>
-    <%= link_to 'Edit profile', edit_user_path(@user) %>
-<% end %>
-<div class="avatar"><%= image_tag gravatar(@user.email, 128) %></div>
-<p>Email: <%= @user.email %></p>
+<div class="profile span12">
+  <h1><%= @user.username %> </h1>
+  <% if current_user == @user %>
+      <%= link_to 'Edit profile', edit_user_path(@user), class: 'btn btn-small btn-info' %>
+  <% end %>
 
-<h2>Blogs</h2>
-<%= render partial: "shared/blogpostingslist", locals: {:show_username => FALSE} %>
+  <div class="avatar"><%= image_tag gravatar(@user.email, 128) %></div>
 
-<h2>Audiofiles</h2>
-<%= render partial: "shared/audiopostingslist", locals: {:show_username => FALSE} %>
+  <p>Email: <%= @user.email %></p>
 
-<%= link_to 'Back', users_path %>
+  <h2>Blogs</h2>
+  <%= render partial: "shared/blogpostingslist", locals: {:show_username => FALSE} %>
+
+  <h2>Audiofiles</h2>
+  <%= render partial: "shared/audiopostingslist", locals: {:show_username => FALSE} %>
+
+  <div class="buttons span12">
+    <%= link_to 'Back', users_path, class: 'btn' %>
+  </div>
+</div>

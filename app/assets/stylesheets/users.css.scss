@@ -2,17 +2,8 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.users {
-  .user {
-    border: 1px solid gray;
-    margin-bottom: 5px;
-
-    .picture {
-      vertical-align: center;
-      height: auto;
-    }
-    .data {
-    }
+.profile {
+  .avatar {
+    margin: 10px 0;
   }
-
 }

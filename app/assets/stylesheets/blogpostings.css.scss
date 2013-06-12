@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .tag_cloud {
-  width: 400px;
   margin-bottom: 10px;
 
   line-height: 1.6em;
@@ -20,16 +19,17 @@
 .blogposts {
 
   .picture {
-    width: 10%;
     margin-right: 5px;
     float: left;
   }
+}
 
-  .blogpost {
-    height: 100%;
-    width: 400px;
-    //border: 1px solid gray;
-    margin-bottom: 5px;
-    padding: 5px;
-  }
+.blogpost-detail {
+  background-color: #FFFFFF;
+  border: 1px solid #E3E3E3;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+  margin-bottom: 20px;
+  min-height: 20px;
+  padding: 19px;
 }

@@ -1,44 +1,65 @@
-<%= simple_format @blogposting.content %>
+<div class="blogpost-detail">
+  <div class="span" style="display: none;"></div>
+  <h1>Blogpost</h1>
 
-<p><strong>Tags:</strong> <%= raw @blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
+  <div class="row-fluid">
+    <div class="picture span3"><%= image_tag gravatar(@blogposting.user.email, 60) %></div>
+    <header class="span8"><h3><%= link_to @blogposting.user.username, @blogposting.user %></h3></header>
+  </div>
+  <br>
 
-<p><strong>Written by: </strong><%= @user.username %></p>
-
-<% if current_user == @blogposting.user %>
-    <%= link_to 'Edit post', edit_blogposting_path(@blogposting) %>
-<% end %>
-
-<% # COMMENTS       %>
-<section id="comments">
-  <h3>Comments</h3>
-  <% @comments.each do |comment| %>
-      <article class="comment">
-        <div class="commenthead">
-          <div class="avatar"><%= image_tag gravatar(comment.user.email, 24) %></div>
-          <%= comment.user.username %> - <%= time_ago_in_words(comment.created_at) %> ago
-          <% # display delete link only for comments written by this particular user       %>
-          <% if current_user.to_s != '' and comment.user_id == current_user.id %>
-              <span><%= link_to 'delete', blogposting_comment_path(@blogposting, comment), :confirm => 'Are you sure?', :method => :delete, :class => "" %></span>
-          <% end %>
-        </div>
-        <div class="commentbody"><%= comment.content %></div>
-      </article>
-  <% end %>
-
-  <% # add a new comment       %>
-  <article class="newcomment">
-    <h3>Add comment</h3>
-
-    <div class="avatar"><%= image_tag gravatar(@blogposting.user.email, 24) %></div>
-    <div class="commenthead">
-      <%= current_user.username %>
+  <div class="row-fluid">
+    <div class="well span5">
+      <%= simple_format @blogposting.content %>
     </div>
-    <%= form_for [@blogposting, current_user.comments.new] do |f| %>
-        <%= f.text_area :content, :size => "25x2", :class => "fullwidth" %>
-        <%= f.submit "Add Comment", :class => "awesome custom red" %>
+
+    <div class="span5">
+      <p><strong>Tags:</strong> <%= raw @blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
+
+      <p class="muted">Posted <%= time_ago_in_words(@blogposting.created_at) %> ago</p>
+    </div>
+
+    <% if current_user == @blogposting.user %>
+        <div class="span12">
+          <%= link_to 'Edit post', edit_blogposting_path(@blogposting), class: 'btn btn-small btn-info' %>
+        </div>
     <% end %>
-  </article>
-</section>
+  </div>
 
-<%= link_to 'Back', blogpostings_path %>
+  <div class="row-fluid">
+    <section class="comments span12">
+      <h3>Comments</h3>
+      <% @comments.each do |comment| %>
+          <article class="comment span6">
+            <div class="picture span1"><%= image_tag gravatar(comment.user.email, 50) %></div>
 
+            <%= link_to comment.user.username, comment.user, class: 'span3' %>
+            <div class='span8'><%= comment.content %></div>
+            <div class="muted comment-created_at"><%= time_ago_in_words(comment.created_at) %> ago</div>
+          </article>
+      <% end %>
+    </section>
+  </div>
+
+  <div class="row-fluid">
+    <article class="newcomment">
+      <h3>Add comment</h3>
+
+      <div class="span12">
+        <div class="avatar"><%= image_tag gravatar(@blogposting.user.email, 40) %></div>
+        <%= current_user.username %>
+      </div>
+      <div class="span12">
+        <%= form_for [@blogposting, current_user.comments.new] do |f| %>
+            <%= f.text_area :content, :size => "25x2", :class => "fullwidth" %>
+            <br>
+            <%= f.submit "Add Comment", :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+    </article>
+  </div>
+
+  <div class="row-fluid">
+    <%= link_to 'Back', blogpostings_path, class: 'btn' %>
+  </div>
+</div>

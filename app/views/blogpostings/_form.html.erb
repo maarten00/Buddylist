@@ -1,16 +1,16 @@
+<% if @blogposting.errors.any? %>
+    <div class="alert alert-error span4">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <%= form_for([@blogposting]) do |f| %>
-    <% if @blogposting.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@blogposting.errors.count, "error") %> prohibited this blogposting from being saved:</h2>
-
-          <ul>
-            <% @blogposting.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
     <div class="field">
       <%= f.label :content %>
       <br>
@@ -18,11 +18,12 @@
     </div>
 
     <div class="field">
-      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+      <%= f.label :tag_list, "Tags (separated by commas)" %>
+      <br/>
       <%= f.text_field :tag_list %>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Create blogposting", class: 'btn btn-primary' %>
     </div>
 <% end %>

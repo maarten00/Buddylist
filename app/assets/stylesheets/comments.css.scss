@@ -3,30 +3,11 @@
   They will automatically be included in application.css.
 */
 
-.comment
-{
-  width: 325px;
+.comment {
+  border-bottom: 1px solid white;
+  background-color: #EDEFF4;
 }
 
-.comment:nth-child(even)
-{
-  background-color: #d3d3d3;
-}
-
-.comment:nth-child(odd)
-{
-  background-color: #bdbdbd;
-}
-
-.commenthead
-{
-
-  .avatar{
-    float: left;
-    margin: 4px;
-  }
-}
-
-.commentbody
-{
+.comment-created_at {
+  margin: 0 0 0 50px;
 }

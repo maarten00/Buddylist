@@ -1,23 +1,19 @@
-<div class="blogposts">
+<div class="blogposts row-fluid">
+  <div class="span" style="display: none;"></div>
   <% @blogpostings.each do |blogposting| %>
-      <article class="blogpost">
+      <article class="blogpost span5 well">
         <% if show_username == TRUE %>
-            <aside class="picture"><%= image_tag gravatar(blogposting.user.email, 40) %></aside>
-            <header><h2><%= link_to blogposting.user.username, blogposting.user %></h2></header>
+            <%= render partial: "shared/mini_profile", locals: {:posting => blogposting} %>
         <% end %>
         <%= simple_format blogposting.content %>
 
-        <%= time_ago_in_words(blogposting.created_at) %> ago
+        <p class="muted">Posted <%= time_ago_in_words(blogposting.created_at) %> ago
 
-        <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %>
-        <br>
+          <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
+
+        <%= link_to 'Show post', blogposting, class: 'btn btn-mini btn-primary' %>
         <% if blogposting.comments.count > 1 %>
             <%= blogposting.comments.count %> comments
-        <% end %>
-
-        <%= link_to 'Show', blogposting %>
-        <% if current_user == @user %>
-            <%= link_to 'Edit', edit_blogposting_path(blogposting) %>
         <% end %>
       </article>
   <% end %>

@@ -1,9 +1,9 @@
-<div class="blogposts">
+<div class="audioposts row-fluid">
+  <div class="span" style="display: none;"></div>
   <% @audiopostings.each do |audioposting| %>
-      <article class="blogpost">
+      <article class="audiopost span5 well">
         <% if show_username == TRUE %>
-            <aside class="picture"><%= image_tag gravatar(audioposting.user.email, 40) %></aside>
-            <header><h2><%= link_to audioposting.user.username, audioposting.user %></h2></header>
+            <%= render partial: "shared/mini_profile", locals: {:posting => audioposting} %>
         <% end %>
         <h4><%= audioposting.title %></h4>
         <audio controls>
@@ -13,17 +13,14 @@
 
         <br>
 
-        <%= time_ago_in_words(audioposting.created_at) %> ago
+        Posted <%= time_ago_in_words(audioposting.created_at) %> ago
 
         <strong>Tags:</strong> <%= raw audioposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %>
         <br>
+
+        <%= link_to 'Show', audioposting, class: 'btn btn-mini btn-primary' %>
         <% if audioposting.comments.count > 1 %>
             <%= audioposting.comments.count %> comments
-        <% end %>
-
-        <%= link_to 'Show', audioposting %>
-        <% if current_user == @user %>
-            <%= link_to 'Edit', edit_audioposting_path(audioposting) %>
         <% end %>
       </article>
   <% end %>

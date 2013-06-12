@@ -1,0 +1,30 @@
+{
+    "js": [
+        "bootstrap-transition.js",
+        "bootstrap-modal.js",
+        "bootstrap-dropdown.js",
+        "bootstrap-scrollspy.js",
+        "bootstrap-tab.js",
+        "bootstrap-tooltip.js",
+        "bootstrap-popover.js",
+        "bootstrap-rowlink.js",
+        "bootstrap-affix.js",
+        "bootstrap-alert.js",
+        "bootstrap-button.js",
+        "bootstrap-collapse.js",
+        "bootstrap-carousel.js",
+        "bootstrap-typeahead.js",
+        "bootstrap-inputmask.js",
+        "bootstrap-fileupload.js"
+    ],
+    "css": [],
+    "img": [
+        "glyphicons-halflings.png",
+        "glyphicons-halflings-white.png"
+    ],
+    "font": [],
+    "vars": {
+        "@bodyBackground": "#E9EAED",
+        "@navbarBackground": "#3B5998"
+    }
+}

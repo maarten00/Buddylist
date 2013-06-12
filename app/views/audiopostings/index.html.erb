@@ -1,27 +1,9 @@
-<h1>Listing audiopostings</h1>
+<h1>Audiopostings</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @audiopostings.each do |audioposting| %>
-      <tr>
-        <td><%= audioposting.title %></td>
-        <td><%= link_to 'Show', audioposting %></td>
-        <td><%= link_to 'Edit', edit_audioposting_path(audioposting) %></td>
-        <td><%= link_to 'Destroy', audioposting, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
+<div class="tag_cloud row-fluid span12">
+  <% tag_cloud Audioposting.tag_counts, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, audiotag_path(tag.name), class: css_class %>
   <% end %>
-  </tbody>
-</table>
+</div>
 
-<br>
-
-<%= link_to 'New Audioposting', new_audioposting_path %>
+<%= render partial: "shared/audiopostingslist", locals: {:show_username => TRUE} %>
