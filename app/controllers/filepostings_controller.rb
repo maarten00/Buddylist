@@ -83,6 +83,6 @@ class FilepostingsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   private
   def fileposting_params()
-    params.require(:fileposting).permit(:user_id, :file, :title, :tag_list).merge(:user_id => @user.id)
+    params.require(:fileposting).permit(:user_id, :file, :title, :tag_list, :type).merge(:user_id => @user.id)
   end
 end

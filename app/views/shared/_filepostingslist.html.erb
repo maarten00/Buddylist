@@ -6,11 +6,17 @@
             <%= render partial: "shared/mini_profile", locals: {:posting => fileposting} %>
         <% end %>
         <h4><%= fileposting.title %></h4>
-        <audio controls>
-          <source src=" <%= fileposting.file %>" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-
+        <% if fileposting.filetype == "Audio" %>
+            <audio controls>
+              <source src="<%= fileposting.file %>" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+        <% else %>
+            <video width="320" height="240" controls>
+              <source src="<%= fileposting.file %>" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+        <% end %>
         <br>
 
         Posted <%= time_ago_in_words(fileposting.created_at) %> ago

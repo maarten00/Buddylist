@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130612193956) do
+ActiveRecord::Schema.define(version: 20130612200042) do
 
   create_table "blogpostings", force: true do |t|
     t.integer "user_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20130612193956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "title"
-    t.string "type"
+    t.string "filetype"
   end
 
   create_table "taggings", force: true do |t|

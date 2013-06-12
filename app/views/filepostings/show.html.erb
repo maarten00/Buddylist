@@ -11,7 +11,7 @@
   <header><h2><%= @fileposting.title %></h2></header>
   <div class="row-fluid">
     <div class="well span5">
-      <% if @fileposting.type == "audio" %>
+      <% if @fileposting.filetype == "Audio" %>
           <audio controls>
             <source src="<%= @fileposting.file %>" type="audio/mpeg">
             Your browser does not support the audio element.

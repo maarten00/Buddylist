@@ -21,14 +21,14 @@
           </div>
         </div>
         <div class="control-group span6">
-          <%= f.label :type, class: 'control-label' %>
+          <%= f.label :filetype, class: 'control-label' %>
           <div class="controls">
-            <%= f.select :type, options_for_select(["Video", "Audio"]) %>
+            <%= f.select :filetype, options_for_select(["Video", "Audio"]) %>
           </div>
         </div>
 
         <div class="control-group span6">
-          <% # Display filename if a file already exists, file is not editable.              %>
+          <% # Display filename if a file already exists, file is not editable.               %>
           <% if  @fileposting.file? %>
               <%= simple_format "File: " + File.basename(@fileposting.file.path) %>
               <div data-provides="fileupload" class="fileupload fileupload-exists">
