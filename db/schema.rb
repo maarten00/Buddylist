@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130612200042) do
+ActiveRecord::Schema.define(version: 20130612211459) do
 
   create_table "blogpostings", force: true do |t|
     t.integer "user_id"
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 20130612200042) do
     t.datetime "updated_at"
     t.string "title"
     t.string "filetype"
+  end
+
+  create_table "friendships", force: true do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.boolean "approved"
   end
 
   create_table "taggings", force: true do |t|

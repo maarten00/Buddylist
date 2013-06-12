@@ -2,6 +2,14 @@ class User < ActiveRecord::Base
   has_many :blogpostings
   has_many :comments
 
+  has_many :friendships
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :direct_friends, :through => :friendships, :conditions => "approved = 'true'", :source => :friend
+  has_many :inverse_friends, :through => :inverse_friendships, :conditions => "approved = 'true'", :source => :user
+
+  has_many :pending_friends, :through => :friendships, :conditions => "approved = 'false'", :foreign_key => "user_id", :source => :user
+  has_many :requested_friendships, :class_name => "Friendship", :foreign_key => "friend_id", :conditions => "approved = 'false'"
+
   mount_uploader :avatar, ImageUploader
   attr_accessor :password
   before_save :encrypt_password
@@ -20,6 +28,10 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def friends
+    direct_friends | inverse_friends
   end
 
   def encrypt_password
