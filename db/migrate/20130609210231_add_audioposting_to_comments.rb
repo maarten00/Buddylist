@@ -1,9 +1,9 @@
-class AddAudiopostingToComments < ActiveRecord::Migration
+class AddFilepostingToComments < ActiveRecord::Migration
   def up
-    add_column :comments, :audioposting_id, :string
+    add_column :comments, :fileposting_id, :string
   end
 
   def down
-    remove_column :comments, :audioposting_id
+    remove_column :comments, :fileposting_id
   end
 end

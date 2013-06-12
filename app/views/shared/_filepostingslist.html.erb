@@ -1,0 +1,27 @@
+<div class="audioposts row-fluid">
+  <div class="span" style="display: none;"></div>
+  <% @filepostings.each do |fileposting| %>
+      <article class="audiopost span5 well">
+        <% if show_username == TRUE %>
+            <%= render partial: "shared/mini_profile", locals: {:posting => fileposting} %>
+        <% end %>
+        <h4><%= fileposting.title %></h4>
+        <audio controls>
+          <source src=" <%= fileposting.file %>" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <br>
+
+        Posted <%= time_ago_in_words(fileposting.created_at) %> ago
+
+        <strong>Tags:</strong> <%= raw fileposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %>
+        <br>
+
+        <%= link_to 'Show', fileposting, class: 'btn btn-mini btn-primary' %>
+        <% if fileposting.comments.count > 1 %>
+            <%= fileposting.comments.count %> comments
+        <% end %>
+      </article>
+  <% end %>
+</div>

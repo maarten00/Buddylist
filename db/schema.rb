@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130610165228) do
-
-  create_table "audiopostings", force: true do |t|
-    t.integer "user_id"
-    t.string "audiofile"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "title"
-  end
+ActiveRecord::Schema.define(version: 20130612191817) do
 
   create_table "blogpostings", force: true do |t|
     t.integer "user_id"
@@ -36,10 +28,18 @@ ActiveRecord::Schema.define(version: 20130610165228) do
     t.string "content", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "audioposting_id"
+    t.string "fileposting_id"
   end
 
   add_index "comments", ["user_id", "blogposting_id"], name: "index_comments_on_user_id_and_blogposting_id"
+
+  create_table "filepostings", force: true do |t|
+    t.integer "user_id"
+    t.string "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "title"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer "tag_id"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 20130610165228) do
     t.datetime "updated_at", null: false
     t.string "avatar"
     t.string "email"
+  end
+
+  create_table "videopostings", force: true do |t|
+    t.string "title"
+    t.string "videofile"
+    t.integer "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

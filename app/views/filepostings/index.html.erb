@@ -1,0 +1,9 @@
+<h1>filepostings</h1>
+
+<div class="tag_cloud row-fluid span12">
+  <% tag_cloud Fileposting.tag_counts, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, audiotag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+
+<%= render partial: "shared/filepostingslist", locals: {:show_username => TRUE} %>

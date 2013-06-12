@@ -1,6 +1,6 @@
-class CreateAudiopostings < ActiveRecord::Migration
+class CreateFilepostings < ActiveRecord::Migration
   def change
-    create_table :audiopostings do |t|
+    create_table :filepostings do |t|
       t.integer :user_id
       t.string :audiofile
 

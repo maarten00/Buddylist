@@ -1,0 +1,2 @@
+module FilepostingsHelper
+end
