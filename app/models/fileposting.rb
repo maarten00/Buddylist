@@ -3,7 +3,7 @@ class Fileposting < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   include ActiveModel::ForbiddenAttributesProtection
   acts_as_taggable
-  mount_uploader :file, AudioUploader
+  mount_uploader :file, FileUploader
 
   validates_presence_of :user_id, :file, :title
 
