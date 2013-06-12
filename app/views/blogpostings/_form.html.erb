@@ -3,7 +3,7 @@
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <h2>Form is invalid</h2>
       <ul>
-        <% for message in @user.errors.full_messages %>
+        <% for message in @blogposting.errors.full_messages %>
             <li><%= message %></li>
         <% end %>
       </ul>
