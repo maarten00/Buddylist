@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
   private
   def set_posting
     if params['fileposting_id']
-      @posting = fileposting.find(params['fileposting_id'])
+      @posting = Fileposting.find(params['fileposting_id'])
     else
       params['blogposting_id']
       @posting = Blogposting.find(params['blogposting_id'])
