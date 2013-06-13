@@ -1,0 +1,14 @@
+<div class="row-fluid">
+  <section class="comments span12">
+    <h3>Comments</h3>
+    <% @comments.each do |comment| %>
+        <article class="comment span6">
+          <div class="picture span1"><%= image_tag gravatar(comment.user.email, 50) %></div>
+
+          <%= link_to comment.user.username, comment.user, class: 'span3' %>
+          <div class='span8'><%= comment.content %></div>
+          <div class="muted comment-created_at"><%= time_ago_in_words(comment.created_at) %> ago</div>
+        </article>
+    <% end %>
+  </section>
+</div>

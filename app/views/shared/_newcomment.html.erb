@@ -1,0 +1,17 @@
+<div class="row-fluid">
+  <article class="newcomment">
+    <h3>Add comment</h3>
+
+    <div class="span12">
+      <div class="avatar"><%= image_tag gravatar(posting.user.email, 40) %></div>
+      <%= current_user.username %>
+    </div>
+    <div class="span12">
+      <%= form_for [posting, current_user.comments.new] do |f| %>
+          <%= f.text_area :content, :size => "25x2", :class => "fullwidth" %>
+          <br>
+          <%= f.submit "Add Comment", :class => "btn btn-primary" %>
+      <% end %>
+    </div>
+  </article>
+</div>
