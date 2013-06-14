@@ -66,6 +66,6 @@ class UsersController < ApplicationController
   # since you'll be able to reuse the same permit list between create and update. Also, you
   # can specialize this method with per-user checking of permissible attributes.
   def user_params
-    params.required(:user).permit(:username, :password, :email, :avatar, :password_confirmation)
+    params.required(:user).permit(:username, :password, :email, :avatar, :password_confirmation, :public_profile)
   end
 end

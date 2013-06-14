@@ -38,6 +38,11 @@
         <%= f.password_field :password_confirmation %>
       </p>
 
+      <p>
+        <%= f.label :public_profile %><br>
+        <%= f.check_box :public_profile %>
+      </p>
+
       <p class="button"><%= f.submit 'Update user', class: 'btn btn-primary' %></p>
   <% end %>
 </div>

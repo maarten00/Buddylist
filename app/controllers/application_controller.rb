@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_friends
-    if ! current_user.friends.include?(User.find(params[:id]))
-      unless current_user == User.find(params[:id])
+    user = User.find(params[:id])
+    if ! current_user.friends.include?(user)
+      unless current_user == User.find(params[:id]) || user.public_profile == true
         redirect_to users_path, notice: 'You need to be friends with this user to view this page.'
       end
     end
