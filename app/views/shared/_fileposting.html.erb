@@ -20,7 +20,7 @@
 
         Posted <%= time_ago_in_words(fileposting.created_at) %> ago
 
-        <strong>Tags:</strong> <%= raw fileposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %>
+        <strong>Tags:</strong> <%= raw fileposting.tag_list.map { |t| link_to t, filetag_path(t) }.join(', ') %>
         <br>
 
         <%= link_to 'Show', fileposting, class: 'btn btn-mini btn-primary' %>
