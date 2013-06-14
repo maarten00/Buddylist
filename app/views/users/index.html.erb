@@ -10,6 +10,17 @@
           Joined: <%= user.created_at.to_s(:long) %>
           <br>
           Friends: <%= user.friends.count %>
+          <% if current_user && current_user != user %>
+              <% if  current_user.friends.include?(user) %>
+                  <div class="notice">You are friends</div>
+              <% elsif current_user.pending_friends.include?(user) %>
+                <div class="notice">Friendship request sent</div>
+              <% elsif current_user.requested_friends.include?(user) %>
+                <div class="notice">Friendship request received</div>
+              <% else %>
+                <%= link_to "Add friend", new_friendship_path(friend_id: user.id) %>
+              <% end %>
+          <% end %>
         </div>
       </div>
   <% end %>

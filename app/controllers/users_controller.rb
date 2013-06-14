@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :require_login, only: [:show, :index]
+  before_filter :require_friends, only: [:show]
 
   def new
     @user = User.new
@@ -44,6 +45,13 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  private
+  def set_requests
+    @user.requested_friendships.each do |request|
+      request.user = User.find(request.user_id)
+    end
   end
 
   private
