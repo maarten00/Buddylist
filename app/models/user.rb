@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
+
   has_many :blogpostings
   has_many :comments
-
   #Friendships
   has_many :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -11,16 +11,14 @@ class User < ActiveRecord::Base
   has_many :pending_friends, :through => :friendships, :conditions => "approved = 'f'", :foreign_key => :user_id, :source => :friend
   has_many :requested_friendships, :class_name => "Friendship", :foreign_key => "friend_id", :conditions => "approved = 'f'"
 
-  mount_uploader :avatar, ImageUploader
+  attr_accessor :password
+
+  include ActiveModel::Validations
+  validates :password, confirmation: true, presence: true, on: :create
+  validates :email, uniqueness: true, presence: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: ' is not a valid e-mail address' }
+  validates :username, presence: true
 
   before_save :encrypt_password
-
-  validates_confirmation_of :password
-  validates_presence_of :email
-  validates_uniqueness_of :email
-  validates_presence_of :username
-  validates_presence_of :password, :on => :create
-
 
   def self.authenticate(email, password)
     user = find_by_email(email)
