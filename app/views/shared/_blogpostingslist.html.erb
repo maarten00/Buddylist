@@ -3,7 +3,7 @@
   <% @blogpostings.each do |blogposting| %>
       <article class="blogpost span5 well">
         <% if show_username == TRUE %>
-            <%= render partial: "shared/mini_profile", locals: {:posting => blogposting} %>
+            <%= render partial: "shared/mini_profile", locals: {posting:blogposting} %>
         <% end %>
         <%= simple_format blogposting.content %>
 

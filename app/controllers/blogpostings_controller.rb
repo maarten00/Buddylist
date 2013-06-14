@@ -34,7 +34,7 @@ class BlogpostingsController < ApplicationController
   # POST /blogpostings
   # POST /blogpostings.json
   def create
-    @blogposting = Blogposting.new(:user_id => @user.id, :content => blogposting_params['content'], :tag_list => blogposting_params['tag_list'])
+    @blogposting = Blogposting.new(user_id: @user.id, content: blogposting_params['content'], tag_list: blogposting_params['tag_list'])
     #@blogpostingstag = BlogpostingsTag.new(blogposting_params)
     #@tag = Tag.new(blogposting_params)
     respond_to do |format|

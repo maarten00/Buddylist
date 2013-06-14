@@ -28,7 +28,7 @@
 
   <%= render partial: "shared/commentlist" %>
 
-  <%= render partial: "shared/newcomment", locals: {:posting => @blogposting} %>
+  <%= render partial: "shared/newcomment", locals: {posting: @blogposting} %>
 
   <div class="row-fluid">
     <%= link_to 'Back', blogpostings_path, class: 'btn' %>

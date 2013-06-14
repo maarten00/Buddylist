@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
-      redirect_to new_session_url, :notice => 'You need to log in to view this page'
+      redirect_to new_session_url, notice: 'You need to log in to view this page'
     end
   end
 

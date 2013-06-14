@@ -13,9 +13,9 @@ class FriendshipsController < ApplicationController
   def create
     @friendship = Friendship.new(user_id: current_user.id, friend_id: friendship_params[:friend_id], approved: 'false')
     if @friendship.save
-      redirect_to users_url, :notice => "Friendship requested!"
+      redirect_to users_url, notice: "Friendship requested!"
     else
-      redirect_to users_url, :notice => "Something went wrong.."
+      redirect_to users_url, notice: "Something went wrong.."
     end
   end
 

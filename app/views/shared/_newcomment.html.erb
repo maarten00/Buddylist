@@ -8,9 +8,9 @@
     </div>
     <div class="span12">
       <%= form_for [posting, current_user.comments.new] do |f| %>
-          <%= f.text_area :content, :size => "25x2", :class => "fullwidth" %>
+          <%= f.text_area :content, size: "25x2", class: "fullwidth" %>
           <br>
-          <%= f.submit "Add Comment", :class => "btn btn-primary" %>
+          <%= f.submit "Add Comment", class: "btn btn-primary" %>
       <% end %>
     </div>
   </article>

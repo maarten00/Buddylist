@@ -39,7 +39,7 @@
 
   <%= render partial: "shared/commentlist" %>
 
-  <%= render partial: "shared/newcomment", locals: {:posting => @fileposting} %>
+  <%= render partial: "shared/newcomment", locals: {posting: @fileposting} %>
 
   <div class="row-fluid">
     <%= link_to 'Back', filepostings_path, class: 'btn' %>

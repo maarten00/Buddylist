@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to(@posting, :notice => 'Comment was successfully created.') }
+        format.html { redirect_to(@posting, notice: 'Comment was successfully created.') }
       else
-        format.html { redirect_to(@posting, :notice => 'There was an error saving your comment (empty comment or comment way to long).') }
+        format.html { redirect_to(@posting, notice: 'There was an error saving your comment (empty comment or comment way to long).') }
       end
     end
   end

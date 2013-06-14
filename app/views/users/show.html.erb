@@ -11,14 +11,14 @@
   <div class="span12">
     <h2>Friends</h2>
 
-    <%= render partial: "shared/userlist", locals: {:users => @user.friends} %>
+    <%= render partial: "shared/userlist", locals: {users: @user.friends} %>
   </div>
 
   <h2>Blogs</h2>
-  <%= render partial: "shared/blogpostingslist", locals: {:show_username => FALSE} %>
+  <%= render partial: "shared/blogpostingslist", locals: {show_username: FALSE} %>
 
   <h2>Files</h2>
-  <%= render partial: "shared/filepostingslist", locals: {:show_username => FALSE} %>
+  <%= render partial: "shared/filepostingslist", locals: {show_username: FALSE} %>
 
   <div class="buttons span12">
     <%= link_to 'Back', users_path, class: 'btn' %>
