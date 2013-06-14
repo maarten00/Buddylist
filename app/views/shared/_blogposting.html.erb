@@ -1,0 +1,18 @@
+<div class="blogposts row-fluid">
+  <div class="span" style="display: none;"></div>
+      <article class="blogpost span6 offset2 well">
+        <% if show_username == TRUE %>
+            <%= render partial: "shared/mini_profile", locals: {posting: blogposting} %>
+        <% end %>
+        <%= simple_format blogposting.content %>
+
+        <p class="muted">Posted <%= time_ago_in_words(blogposting.created_at) %> ago
+
+          <strong>Tags:</strong> <%= raw blogposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
+
+        <%= link_to 'Show post', blogposting, class: 'btn btn-mini btn-primary' %>
+        <% if blogposting.comments.count > 0 %>
+            <%= blogposting.comments.count %> comment<% if blogposting.comments.count > 1%>s<%end%>
+        <% end %>
+      </article>
+</div>

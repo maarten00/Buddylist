@@ -1,6 +1,4 @@
 Buddylist::Application.routes.draw do
-  resources :filepostings
-
   get 'blogtags/:tag', to: 'blogpostings#index', as: :blogtag
   get 'filetags/:tag', to: 'filepostings#index', as: :audiotag
   get "log_in" => "sessions#new", :as => "log_in"
@@ -8,8 +6,8 @@ Buddylist::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "accept_friendship/:id" => "friendships#accept", :as => "accept_friendship"
 
-  resources :friendships
   resources :users
+  resources :friendships
   resources :sessions
   resources :blogpostings do
     resources :comments, :only => [:create, :destroy]
@@ -17,8 +15,10 @@ Buddylist::Application.routes.draw do
   resources :filepostings do
     resources :comments, :only => [:create, :destroy]
   end
+  resources :postings do
+    resources :comments, :only => [:create, :destroy]
+  end
 
-
-  root :to => 'blogpostings#index'
+  root :to => 'postings#index'
 
 end

@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   def show
     @blogpostings = Blogposting.all.where(user_id: @user.id)
     @filepostings = Fileposting.all.where(user_id: @user.id)
+    merge_and_sort_postings
   end
 
   def index

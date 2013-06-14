@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
 
+  def merge_and_sort_postings
+    @postings = @filepostings | @blogpostings
+    @postings = @postings.sort  {|postingA, postingB| postingA.created_at <=> postingB.created_at}.reverse
+  end
+
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
