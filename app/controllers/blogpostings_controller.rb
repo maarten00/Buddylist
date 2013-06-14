@@ -1,6 +1,6 @@
 class BlogpostingsController < ApplicationController
   before_filter :set_blogposting, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show]
+  before_filter :require_login, only: [:show, :index]
   before_filter :set_user, only: [:show]
   before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]

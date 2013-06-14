@@ -1,4 +1,5 @@
 class PostingsController < ApplicationController
+  before_action :require_login, only: [:index]
 
   def index
     @filepostings = Fileposting.all.includes(:user).includes(:comments)
