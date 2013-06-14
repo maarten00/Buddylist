@@ -23,7 +23,7 @@
         <div class="control-group span6">
           <%= f.label :filetype, class: 'control-label' %>
           <div class="controls">
-            <%= f.select :filetype, options_for_select(["Video", "Audio"]) %>
+            <%= f.select :filetype, options_for_select(["Video", "Audio"], @fileposting.filetype)%>
           </div>
         </div>
 
