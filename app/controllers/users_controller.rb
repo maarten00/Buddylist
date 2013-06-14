@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :require_login, only: [:show, :index]
   before_filter :require_friends, only: [:show]
+  before_filter :set_friendship, only: [:show, :index]
 
   def new
     @user = User.new
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @friendship = Friendship.new
   end
 
   def edit
@@ -53,6 +53,11 @@ class UsersController < ApplicationController
     @user.requested_friendships.each do |request|
       request.user = User.find(request.user_id)
     end
+  end
+
+  private
+  def set_friendship
+    @friendship = Friendship.new
   end
 
   private
