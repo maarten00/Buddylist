@@ -2,16 +2,16 @@ class FriendshipsController < ApplicationController
   before_filter :require_login
   before_filter :set_requests, only: [:index]
 
-  def accept
-    @friendship = Friendship.find(params[:request_id])
+  def update
+    @friendship = Friendship.find(friendship_params[:id])
     @friendship.approved = "true"
     if @friendship.save
-      redirect_to User.find(params[:user_id]), notice: "You are now friends!"
+      redirect_to User.find(@friendship.user_id), notice: "You are now friends!"
     end
   end
 
-  def new
-    @friendship = Friendship.new(user_id: current_user.id, friend_id: params[:friend_id], approved: 'false')
+  def create
+    @friendship = Friendship.new(user_id: current_user.id, friend_id: friendship_params[:friend_id], approved: 'false')
     if @friendship.save
       redirect_to users_url, :notice => "Friendship requested!"
     else
@@ -27,4 +27,8 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  private
+  def friendship_params
+    params.required(:friendship).permit(:id, :user_id, :friend_id)
+  end
 end

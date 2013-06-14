@@ -10,7 +10,12 @@
           Joined: <%= request.user.created_at.to_s(:long) %>
           <br>
           Friends: <%= request.user.friends.count %>
-          <%= link_to "Accept friendship request", accept_friendship_path(request_id: request.id, user_id: request.user.id) %>
+
+          <%= form_for(request) do |f| %>
+              <%= f.hidden_field :id %>
+
+              <p class="button"><%= f.submit 'Accept request', class: 'btn btn-primary' %>
+          <% end %>
         </div>
       </div>
   <% end %>

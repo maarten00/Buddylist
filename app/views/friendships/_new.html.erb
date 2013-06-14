@@ -1,0 +1,5 @@
+<%= form_for(@friendship) do |f| %>
+    <input type="hidden" value="<%= user.id%>" name="friendship[friend_id]">
+
+    <p class="button"><%= f.submit 'Add friend', class: 'btn btn-primary' %></p>
+<% end %>
