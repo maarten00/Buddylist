@@ -11,9 +11,11 @@ Buddylist::Application.routes.draw do
   resources :sessions
   resources :blogpostings do
     resources :comments, :only => [:create, :destroy]
+    get :autocomplete_tag_name, :on => :collection
   end
   resources :filepostings do
     resources :comments, :only => [:create, :destroy]
+    get :autocomplete_tag_name, :on => :collection
   end
   resources :postings do
     resources :comments, :only => [:create, :destroy]

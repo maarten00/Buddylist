@@ -4,6 +4,7 @@ class BlogpostingsController < ApplicationController
   before_filter :set_user, only: [:show]
   before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   # GET /blogpostings
   # GET /blogpostings.json

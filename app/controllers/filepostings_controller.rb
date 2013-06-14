@@ -4,6 +4,7 @@ class FilepostingsController < ApplicationController
   before_filter :set_user, only: [:show, :edit, :update]
   before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   # GET /filepostings
   def index

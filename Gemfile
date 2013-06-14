@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "carrierwave"
 gem "acts-as-taggable-on"
+gem 'rails3-jquery-autocomplete'
 
 gem 'sass-rails', '~> 4.0.0.rc1'
 gem 'coffee-rails', '~> 4.0.0'
