@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def merge_and_sort_postings
     @postings = @filepostings | @blogpostings
-    @postings = @postings.sort  {|postingA, postingB| postingA.created_at <=> postingB.created_at}.reverse
+    @postings = @postings.sort { |postingA, postingB| postingA.created_at <=> postingB.created_at }.reverse
   end
 
   private
@@ -20,10 +20,8 @@ class ApplicationController < ActionController::Base
 
   def require_friends
     user = User.find(params[:id])
-    if ! current_user.friends.include?(user)
-      unless current_user == User.find(params[:id]) || user.public_profile == true
-        redirect_to users_path, notice: 'You need to be friends with this user to view this page.'
-      end
+    unless current_user == user || user.public_profile == true || current_user.friends.include?(user) || current_user.requested_friends.include?(user)
+      redirect_to users_path, notice: 'You need to be friends with this user to view this page.'
     end
   end
 
