@@ -1,7 +1,9 @@
 <% @postings.each do |posting|
-  if posting.kind_of? Blogposting %>
-        <%= render partial: "shared/blogposting", locals: {show_username: TRUE, blogposting: posting} %>
-    <% elsif posting.kind_of? Fileposting %>
-        <%= render partial: "shared/fileposting", locals: {show_username: TRUE, fileposting: posting} %>
-    <% end
+  if current_user.friends.include?(posting.user) || current_user == posting.user
+      if posting.kind_of? Blogposting %>
+            <%= render partial: "shared/blogposting", locals: {show_username: TRUE, blogposting: posting} %>
+        <% elsif posting.kind_of? Fileposting %>
+            <%= render partial: "shared/fileposting", locals: {show_username: TRUE, fileposting: posting} %>
+        <% end
+   end
 end %>
