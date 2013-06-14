@@ -1,28 +1,6 @@
 <div class="users row-fluid">
   <h1>Listing users</h1>
 
-  <% @users.each do |user| %>
-      <div class="well span5">
-        <div class="picture span4"><%= image_tag gravatar(user.email, 128) %></div>
-        <div class="data span8">
-          <h3><%= link_to user.username, user %></h3>
-          <%= simple_format user.email %>
-          Joined: <%= user.created_at.to_s(:long) %>
-          <br>
-          Friends: <%= user.friends.count %>
-          <% if current_user && current_user != user %>
-              <% if  current_user.friends.include?(user) %>
-                  <div class="notice">You are friends</div>
-              <% elsif current_user.pending_friends.include?(user) %>
-                  <div class="notice">Friendship request sent</div>
-              <% elsif current_user.requested_friends.include?(user) %>
-                  <div class="notice">Friendship request received</div>
-              <% else %>
-                  <%= render partial: "friendships/new", locals: {user: user} %>
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
+  <%= render partial: "shared/userlist", locals: {:users => @users} %>
 
 </div>
