@@ -2,16 +2,17 @@ class User < ActiveRecord::Base
   has_many :blogpostings
   has_many :comments
 
+  #Friendships
   has_many :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :direct_friends, :through => :friendships, :conditions => "approved = 't'", :source => :friend
   has_many :inverse_friends, :through => :inverse_friendships, :conditions => "approved = 't'", :source => :user
-
+  #Friendship Requests
   has_many :pending_friends, :through => :friendships, :conditions => "approved = 'f'", :foreign_key => :user_id, :source => :friend
   has_many :requested_friendships, :class_name => "Friendship", :foreign_key => "friend_id", :conditions => "approved = 'f'"
 
   mount_uploader :avatar, ImageUploader
-  attr_accessor :password
+
   before_save :encrypt_password
 
   validates_confirmation_of :password
