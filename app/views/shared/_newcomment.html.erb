@@ -3,7 +3,7 @@
     <h3>Add comment</h3>
 
     <div class="span12">
-      <div class="avatar"><%= image_tag gravatar(posting.user.email, 40) %></div>
+      <div class="avatar"><%= image_tag gravatar(current_user.email, 40) %></div>
       <%= current_user.username %>
     </div>
     <div class="span12">
