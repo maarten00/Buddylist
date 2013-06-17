@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :require_friends, only: [:show]
   before_action :set_friendship, only: [:show, :index]
 
-
   def new
     @user = User.new
   end
@@ -50,7 +49,6 @@ class UsersController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
   end
@@ -68,9 +66,6 @@ class UsersController < ApplicationController
   end
 
   private
-  # Using a private method to encapsulate the permissible parameters is just a good pattern
-  # since you'll be able to reuse the same permit list between create and update. Also, you
-  # can specialize this method with per-user checking of permissible attributes.
   def user_params
     params.required(:user).permit(:username, :password, :email, :avatar, :password_confirmation, :public_profile)
   end

@@ -2,8 +2,6 @@ class PersonalpostingsController < ApplicationController
 
   def create
     @personalposting = Personalposting.new(user_id: current_user.id, content: personalposting_params['content'], receiver_id: personalposting_params['receiver_id'])
-    #@blogpostingstag = BlogpostingsTag.new(blogposting_params)
-    #@tag = Tag.new(blogposting_params)
     respond_to do |format|
       if @personalposting.save
         format.html { redirect_to User.find(personalposting_params['receiver_id']), notice: 'Posted message to wall' }

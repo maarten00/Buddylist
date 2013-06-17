@@ -5,8 +5,6 @@ class BlogpostingsController < ApplicationController
   before_action(only: [:show]) {get_comments(@blogposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
-  # GET /blogpostings
-  # GET /blogpostings.json
   def index
     if params[:tag]
       @blogpostings = Blogposting.tagged_with(params[:tag]).includes(:comments)
@@ -15,29 +13,21 @@ class BlogpostingsController < ApplicationController
     end
   end
 
-  # GET /blogpostings/1
-  # GET /blogpostings/1.json
   def show
     @comments = @blogposting.comments.all
   end
 
-  # GET /blogpostings/new
   def new
     @blogposting = Blogposting.new
   end
 
-  # GET /blogpostings/1/edit
   def edit
 
   end
 
-  # POST /blogpostings
-  # POST /blogpostings.json
   def create
 
     @blogposting = Blogposting.new(user_id: current_user.id, content: blogposting_params['content'], tag_list: blogposting_params['tag_list'])
-    #@blogpostingstag = BlogpostingsTag.new(blogposting_params)
-    #@tag = Tag.new(blogposting_params)
     respond_to do |format|
       if @blogposting.save
         format.html { redirect_to @blogposting, notice: 'Blogposting was successfully created.' }
@@ -49,8 +39,6 @@ class BlogpostingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /blogpostings/1
-  # PATCH/PUT /blogpostings/1.json
   def update
     respond_to do |format|
       if @blogposting.update(blogposting_params)
@@ -63,8 +51,6 @@ class BlogpostingsController < ApplicationController
     end
   end
 
-  # DELETE /blogpostings/1
-  # DELETE /blogpostings/1.json
   def destroy
     @blogposting.destroy
     respond_to do |format|

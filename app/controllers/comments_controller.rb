@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   before_action :require_login
   before_action :set_posting
 
-  # create a comment and bind it to an article and a user
   def create
     @comment = @posting.comments.build(comment_params)
     @comment.user = current_user
@@ -16,7 +15,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # remove a comment
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment.destroy

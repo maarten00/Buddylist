@@ -5,7 +5,6 @@ class FilepostingsController < ApplicationController
   before_action(only: [:show]) {get_comments(@fileposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
-  # GET /filepostings
   def index
     if params[:tag]
       @filepostings = Fileposting.tagged_with(params[:tag]).includes(:comments)
@@ -14,20 +13,16 @@ class FilepostingsController < ApplicationController
     end
   end
 
-  # GET /filepostings/1
   def show
   end
 
-  # GET /filepostings/new
   def new
     @fileposting = Fileposting.new
   end
 
-  # GET /filepostings/1/edit
   def edit
   end
 
-  # POST /filepostings
   def create
     @fileposting = Fileposting.new(fileposting_params)
 
@@ -38,7 +33,6 @@ class FilepostingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /filepostings/1
   def update
     if @fileposting.update(fileposting_params)
       redirect_to @fileposting, notice: 'Fileposting was successfully updated.'
@@ -47,7 +41,6 @@ class FilepostingsController < ApplicationController
     end
   end
 
-  # DELETE /filepostings/1
   def destroy
     @fileposting.destroy
     redirect_to fileposting_url, notice: 'Fileposting was successfully destroyed.'
