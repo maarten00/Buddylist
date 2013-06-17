@@ -1,8 +1,8 @@
 class BlogpostingsController < ApplicationController
-  before_filter :set_blogposting, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show, :index, :create, :new]
-  before_filter :set_user, only: [:show]
-  before_action :get_comments, only: [:show]
+  before_action :set_blogposting, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :index, :create, :new]
+  before_action(only: [:show, :edit, :update]) {set_user(@blogposting) }
+  before_action(only: [:show]) {get_comments(@blogposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   # GET /blogpostings
@@ -74,22 +74,10 @@ class BlogpostingsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_blogposting
     @blogposting = Blogposting.find(params[:id])
   end
 
-  private
-  def get_comments
-    @comments = @blogposting.comments.all
-  end
-
-  private
-  def set_user
-    @user = User.find(@blogposting.user_id)
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
   private
   def blogposting_params
     params.require(:blogposting).permit(:user_id, :content, :tag_list)

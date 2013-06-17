@@ -1,8 +1,8 @@
 class FilepostingsController < ApplicationController
   before_action :set_fileposting, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show, :index, :edit, :create, :new]
-  before_filter :set_user, only: [:show, :edit, :update]
-  before_action :get_comments, only: [:show]
+  before_action :require_login, only: [:show, :index, :edit, :create, :new]
+  before_action(only: [:show, :edit, :update]) {set_user(@fileposting) }
+  before_action(only: [:show]) {get_comments(@fileposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   # GET /filepostings
@@ -54,28 +54,10 @@ class FilepostingsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_fileposting
     @fileposting = Fileposting.find(params[:id])
   end
 
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_fileposting
-    @fileposting = Fileposting.find(params[:id])
-  end
-
-  private
-  def get_comments
-    @comments = @fileposting.comments.all
-  end
-
-  private
-  def set_user
-    @user = User.find(@fileposting.user_id)
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
   private
   def fileposting_params()
     params.require(:fileposting).permit(:user_id, :file, :title, :tag_list, :filetype).merge(user_id: current_user.id)

@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
-  before_filter :require_login
-  before_filter :set_requests, only: [:index]
+  before_action :require_login
+  before_action :set_requests, only: [:index]
 
   def update
     @friendship = Friendship.find(friendship_params[:id])

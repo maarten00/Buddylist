@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_user(posting)
+    @user = User.find(posting.user_id)
+  end
+
+  def get_comments(posting)
+    @comments = posting.comments.all
+  end
+
 end

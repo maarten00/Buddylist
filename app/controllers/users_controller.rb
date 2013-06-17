@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_filter :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show, :index]
-  before_filter :require_friends, only: [:show]
-  before_filter :set_friendship, only: [:show, :index]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :index]
+  before_action :require_friends, only: [:show]
+  before_action :set_friendship, only: [:show, :index]
+
 
   def new
     @user = User.new

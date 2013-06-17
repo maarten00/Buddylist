@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :require_login
-  before_filter :set_posting
+  before_action :require_login
+  before_action :set_posting
 
   # create a comment and bind it to an article and a user
   def create
