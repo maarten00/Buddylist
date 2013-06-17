@@ -1,0 +1,2 @@
+module PersonalPostingControllerHelper
+end

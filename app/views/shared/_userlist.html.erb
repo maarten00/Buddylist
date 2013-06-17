@@ -1,3 +1,6 @@
-<% users.each do |user| %>
-    <%= render partial: "shared/small_profile", locals: {show_request_button: TRUE, show_accept_button: FALSE, user: user, request: FALSE} %>
-<% end %>
+<div class="row-fluid">
+  <div class="span" style="display: none;"></div>
+  <% users.each do |user| %>
+      <%= render partial: "shared/small_profile", locals: {show_request_button: TRUE, show_accept_button: FALSE, user: user, request: FALSE} %>
+  <% end %>
+</div>

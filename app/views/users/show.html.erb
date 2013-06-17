@@ -8,11 +8,16 @@
 
   <p>Email: <%= @user.email %></p>
 
-  <div class="span12">
-    <h2>Friends</h2>
+  <% if @user == current_user %>
+      <%= render partial: "shared/personalpostingslist" %>
 
-    <%= render partial: "shared/userlist", locals: {users: @user.friends} %>
-  </div>
+<% else %>
+      <%= render partial: "personalposting/new", locals: {user: @user} %>
+  <% end %>
+
+  <h2>Friends</h2>
+
+  <%= render partial: "shared/userlist", locals: {users: @user.friends} %>
 
   <h2>Posts</h2>
   <%= render partial: "shared/postingslist" %>

@@ -18,6 +18,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    if current_user == @user
+    @personalpostings = Personalposting.all.where(receiver_id: @user.id).includes(:user)
+    else
+      @personalposting = Personalposting.new
+    end
     @blogpostings = Blogposting.all.where(user_id: @user.id)
     @filepostings = Fileposting.all.where(user_id: @user.id)
     merge_and_sort_postings

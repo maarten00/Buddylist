@@ -1,0 +1,14 @@
+<h3>Post message to wall</h3>
+<%= form_for(@personalposting) do |f| %>
+
+    <div class="field">
+      <%= f.label :content %>
+      <br>
+      <%= f.text_area :content %>
+    </div>
+
+
+    <input type="hidden" value="<%= user.id%>" name="personalposting[receiver_id]">
+
+    <p class="button"><%= f.submit 'Post', class: 'btn btn-primary' %></p>
+<% end %>

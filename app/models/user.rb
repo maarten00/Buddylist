@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  has_many :filepostings
+  has_many :personalpostings
   has_many :blogpostings
   has_many :comments
   #Friendships

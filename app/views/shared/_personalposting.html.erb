@@ -1,0 +1,6 @@
+<article class="blogpost span5 well">
+  <%= simple_format personalposting.content %>
+
+  <p class="muted">Posted <%= time_ago_in_words(personalposting.created_at) %> ago by <%= link_to personalposting.user.username, personalposting.user %></p>
+
+</article>

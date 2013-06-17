@@ -6,9 +6,10 @@ Buddylist::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "accept_friendship/:id" => "friendships#accept", :as => "accept_friendship"
 
+  resources :sessions
   resources :users
   resources :friendships
-  resources :sessions
+  resources :personalpostings
   resources :blogpostings do
     resources :comments, :only => [:create, :destroy]
     get :autocomplete_tag_name, :on => :collection
