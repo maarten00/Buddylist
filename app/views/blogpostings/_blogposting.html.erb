@@ -10,8 +10,6 @@
 
   <%= link_to 'Show post', blogposting, class: 'btn btn-mini btn-primary' %>
   <% if blogposting.comments.count > 0 %>
-      <%= blogposting.comments.count %> comment
-      <% if blogposting.comments.count > 1 %>s
-      <% end %>
+      <%= blogposting.comments.count %> comment<% if blogposting.comments.count > 1 %>s<% end %>
   <% end %>
 </article>

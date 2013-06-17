@@ -23,8 +23,6 @@
 
   <%= link_to 'Show', fileposting, class: 'btn btn-mini btn-primary' %>
   <% if fileposting.comments.count > 0 %>
-      <%= fileposting.comments.count %> comment
-      <% if fileposting.comments.count > 1 %>s
-      <% end %>
+      <%= fileposting.comments.count %> comment<% if fileposting.comments.count > 1 %>s<% end %>
   <% end %>
 </article>
