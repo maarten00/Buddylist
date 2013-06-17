@@ -1,8 +1,7 @@
 class BlogpostingsController < ApplicationController
   before_filter :set_blogposting, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show, :index]
+  before_filter :require_login, only: [:show, :index, :create, :new]
   before_filter :set_user, only: [:show]
-  before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
@@ -35,7 +34,8 @@ class BlogpostingsController < ApplicationController
   # POST /blogpostings
   # POST /blogpostings.json
   def create
-    @blogposting = Blogposting.new(user_id: @user.id, content: blogposting_params['content'], tag_list: blogposting_params['tag_list'])
+
+    @blogposting = Blogposting.new(user_id: current_user.id, content: blogposting_params['content'], tag_list: blogposting_params['tag_list'])
     #@blogpostingstag = BlogpostingsTag.new(blogposting_params)
     #@tag = Tag.new(blogposting_params)
     respond_to do |format|
@@ -87,11 +87,6 @@ class BlogpostingsController < ApplicationController
   private
   def set_user
     @user = User.find(@blogposting.user_id)
-  end
-
-  private
-  def get_user
-    @user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
