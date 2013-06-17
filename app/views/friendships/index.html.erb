@@ -2,22 +2,7 @@
   <h1>Requested friendships</h1>
 
   <% @requests.each do |request| %>
-      <div class="well span5">
-        <div class="picture span4"><%= image_tag gravatar(request.user.email, 128) %></div>
-        <div class="data span8">
-          <h3><%= link_to request.user.username, request.user %></h3>
-          <%= simple_format request.user.email %>
-          Joined: <%= request.user.created_at.to_s(:long) %>
-          <br>
-          Friends: <%= request.user.friends.count %>
-
-          <%= form_for(request) do |f| %>
-              <%= f.hidden_field :id %>
-
-              <p class="button"><%= f.submit 'Accept request', class: 'btn btn-primary' %>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: "shared/small_profile", locals: {show_accept_button: TRUE, user: request.user, request: request, show_request_button: FALSE} %>
   <% end %>
 
 </div>
