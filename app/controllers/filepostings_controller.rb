@@ -1,6 +1,6 @@
 class FilepostingsController < ApplicationController
   before_action :set_fileposting, only: [:show, :edit, :update, :destroy]
-  before_filter :require_login, only: [:show, :index]
+  before_filter :require_login, only: [:show, :index, :edit, :create]
   before_filter :set_user, only: [:show, :edit, :update]
   before_filter :get_user, only: [:create]
   before_action :get_comments, only: [:show]
