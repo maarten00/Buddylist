@@ -1,31 +1,30 @@
-<div class="audioposts row-fluid">
-  <div class="span" style="display: none;"></div>
-      <article class="audiopost span6 offset2 well">
-        <% if show_username == TRUE %>
-            <%= render partial: "shared/mini_profile", locals: {posting: fileposting} %>
-        <% end %>
-        <h4><%= fileposting.title %></h4>
-        <% if fileposting.filetype == "Audio" %>
-            <audio controls>
-              <source src="<%= fileposting.file %>" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-        <% else %>
-            <video width="320" height="240" controls>
-              <source src="<%= fileposting.file %>" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-        <% end %>
-        <br>
+<article class="audiopost span5 well">
+  <% if show_username == TRUE %>
+      <%= render partial: "shared/mini_profile", locals: {posting: fileposting} %>
+  <% end %>
+  <h4><%= fileposting.title %></h4>
+  <% if fileposting.filetype == "Audio" %>
+      <audio controls>
+        <source src="<%= fileposting.file %>" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+  <% else %>
+      <video width="320" height="240" controls>
+        <source src="<%= fileposting.file %>" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+  <% end %>
+  <br>
 
-        Posted <%= time_ago_in_words(fileposting.created_at) %> ago
+  Posted <%= time_ago_in_words(fileposting.created_at) %> ago
 
-        <strong>Tags:</strong> <%= raw fileposting.tag_list.map { |t| link_to t, filetag_path(t) }.join(', ') %>
-        <br>
+  <strong>Tags:</strong> <%= raw fileposting.tag_list.map { |t| link_to t, filetag_path(t) }.join(', ') %>
+  <br>
 
-        <%= link_to 'Show', fileposting, class: 'btn btn-mini btn-primary' %>
-        <% if fileposting.comments.count > 0 %>
-            <%= fileposting.comments.count %> comment<% if fileposting.comments.count > 1%>s<%end%>
-        <% end %>
-      </article>
-</div>
+  <%= link_to 'Show', fileposting, class: 'btn btn-mini btn-primary' %>
+  <% if fileposting.comments.count > 0 %>
+      <%= fileposting.comments.count %> comment
+      <% if fileposting.comments.count > 1 %>s
+      <% end %>
+  <% end %>
+</article>
