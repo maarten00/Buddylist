@@ -1,6 +1,6 @@
 <article class="audiopost span5 well">
   <% if show_username == TRUE %>
-      <%= render partial: "shared/mini_profile", locals: {posting: fileposting} %>
+      <%= render partial: "users/mini_profile", locals: {posting: fileposting} %>
   <% end %>
   <h4><%= fileposting.title %></h4>
   <% if fileposting.filetype == "Audio" %>

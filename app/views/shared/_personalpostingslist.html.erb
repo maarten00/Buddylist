@@ -3,7 +3,7 @@
   <% @personalpostings.each do |personalposting| %>
       <% if current_user.friends.include?(personalposting.user) || current_user == personalposting.user %>
 
-          <%= render partial: "shared/personalposting", locals: {personalposting: personalposting} %>
+          <%= render partial: "personalpostings/personalposting", locals: {personalposting: personalposting} %>
       <% end %>
  <% end %>
 </div>

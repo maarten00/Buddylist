@@ -25,7 +25,7 @@
     </div>
 
     <div class="span5">
-      <p><strong>Tags:</strong> <%= raw @fileposting.tag_list.map { |t| link_to t, blogtag_path(t) }.join(', ') %></p>
+      <p><strong>Tags:</strong> <%= raw @fileposting.tag_list.map { |t| link_to t, filetag_path(t) }.join(', ') %></p>
 
       <p class="muted">Posted <%= time_ago_in_words(@fileposting.created_at) %> ago</p>
     </div>

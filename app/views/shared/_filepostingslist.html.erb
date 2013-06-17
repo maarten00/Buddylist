@@ -2,7 +2,7 @@
   <div class="span" style="display: none;"></div>
   <% @filepostings.each do |fileposting| %>
       <% if current_user.friends.include?(fileposting.user) || current_user == fileposting.user %>
-          <%= render partial: "shared/fileposting", locals: {show_username: TRUE, fileposting: fileposting} %>
+          <%= render partial: "filepostings/fileposting", locals: {show_username: TRUE, fileposting: fileposting} %>
       <% end %>
   <% end %>
 </div>

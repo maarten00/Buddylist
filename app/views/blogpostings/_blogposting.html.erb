@@ -1,6 +1,6 @@
 <article class="blogpost span5 well">
   <% if show_username == TRUE %>
-      <%= render partial: "shared/mini_profile", locals: {posting: blogposting} %>
+      <%= render partial: "users/mini_profile", locals: {posting: blogposting} %>
   <% end %>
   <%= simple_format truncate(blogposting.content, :length => 200, :separator => ' ') %>
 

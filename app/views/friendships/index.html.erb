@@ -2,7 +2,7 @@
   <h1>Requested friendships</h1>
 
   <% @requests.each do |request| %>
-      <%= render partial: "shared/small_profile", locals: {show_accept_button: TRUE, user: request.user, request: request, show_request_button: FALSE} %>
+      <%= render partial: "users/small_profile", locals: {show_accept_button: TRUE, user: request.user, request: request, show_request_button: FALSE} %>
   <% end %>
 
 </div>
