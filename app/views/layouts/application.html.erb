@@ -7,16 +7,16 @@
   <meta name="description" content="Buddylist">
   <meta name="author" content="Maarten Kuiper">
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag "bootstrap/bootstrap" %>
+  <%= stylesheet_link_tag "bootstrap/bootstrap", media: "all", "data-turbolinks-track" => true %>
   <!-- Le styles -->
-  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
 
   <style>
       body {
           padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
   </style>
-  <%= stylesheet_link_tag "bootstrap/bootstrap-responsive" %>
+  <%= stylesheet_link_tag "bootstrap/bootstrap-responsive", media: "all", "data-turbolinks-track" => true %>
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
