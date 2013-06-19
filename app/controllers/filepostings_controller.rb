@@ -44,7 +44,7 @@ class FilepostingsController < ApplicationController
 
   def destroy
     @fileposting.destroy
-    redirect_to fileposting_url, notice: 'Fileposting was successfully destroyed.'
+    redirect_to filepostings_url, notice: 'Fileposting was successfully destroyed.'
   end
 
   private
