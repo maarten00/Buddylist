@@ -22,6 +22,7 @@
     <% if current_user == @blogposting.user %>
         <div class="span12">
           <%= link_to 'Edit post', edit_blogposting_path(@blogposting), class: 'btn btn-small btn-info' %>
+          <%= link_to 'Delete', @blogposting, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small btn-danger' %>
         </div>
     <% end %>
   </div>
