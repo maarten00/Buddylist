@@ -3,6 +3,7 @@ class FilepostingsController < ApplicationController
   before_action :require_login, only: [:show, :index, :edit, :create, :new]
   before_action(only: [:show, :edit, :update]) {set_user(@fileposting) }
   before_action(only: [:show]) {get_comments(@fileposting)}
+  before_action(only: [:edit]) {require_own_post(@fileposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   def index

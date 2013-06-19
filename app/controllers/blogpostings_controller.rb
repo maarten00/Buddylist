@@ -3,6 +3,7 @@ class BlogpostingsController < ApplicationController
   before_action :require_login, only: [:show, :index, :create, :new]
   before_action(only: [:show, :edit, :update]) {set_user(@blogposting) }
   before_action(only: [:show]) {get_comments(@blogposting)}
+  before_action(only: [:edit]) {require_own_post(@blogposting)}
   autocomplete :tag, :name, :class_name => 'ActsAsTaggable'
 
   def index

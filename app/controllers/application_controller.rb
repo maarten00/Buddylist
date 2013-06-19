@@ -25,6 +25,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_own_post(posting)
+    unless current_user == posting.user
+      if posting.kind_of? Blogposting
+        redirect_to blogposting_url(posting), notice: 'You can only edit your own posts!'
+      elsif posting.kind_of? Fileposting
+        redirect_to fileposting_url(posting), notice: 'You can only edit your own posts!'
+      end
+    end
+  end
+
   def set_user(posting)
     @user = User.find(posting.user_id)
   end
